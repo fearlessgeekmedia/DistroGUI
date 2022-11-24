@@ -1,0 +1,250 @@
+#!/usr/bin/env bash
+
+
+if [[ ! -d "$HOME/.config" ]]
+then
+  echo "Making $HOME/.config"
+  mkdir $HOME/.config
+fi
+if [[ ! -d "$HOME/.config/distrogui" ]]
+then
+  echo "Making $HOME/.config/distrogui"
+  mkdir $HOME/.config/distrogui
+  cp docker-images.txt $HOME/.config/distrogui/docker-images.txt
+  cp terminal.txt $HOME/.config/distrogui/terminal.txt
+fi
+
+PATH="$PWD:$PATH"
+#DistroGUI 0.01 Usable Alpha
+#Michael Williams - Fearless Geek Media
+#https://fearlessgeekmedia.com
+#https://github.com/fearlessgeekmedia
+#
+#Licenced under the GNU-GPL 3.0
+
+#This is a pause function that I ended up not needing,
+#but I kept it here in case I need it in the future..
+#function pause(){
+# read -s -n 1 -p "Press any key to continue . . ."
+# echo ""
+#}
+
+#I initially tried to put this into a variable without
+#having to save it to a temporary file. This would have made sense, right?
+#Well I was having problems getting that information to go directly into
+#the variable. But I found saving the Distrobox List to a temporary file,
+#then pulling it avariable worked. I will be attempting
+#to get it to work without saving to the file. But until then, this is how
+#it's working.
+touch ~/.distros.temp
+distrobox-list | tail -n +2 | head -n -1 | awk 'BEGIN { FS = "|" } ; {print $2 "\n" $3 "\n" $4}' > ~/.distros.temp
+cat ~/.distros.temp
+CONTAINER=$(yad --title="DistroGUI" \
+  --list \
+  --button="Set Terminal to Use":2 \
+  --button="Enter Container":10 \
+  --button="Upgrade Container":20\
+  --button="Create":30 \
+  --button="Stop":40 \
+  --button="Delete":50 \
+  --button="About":60 \
+  --button=gtk-quit:0 \
+  --column="Name":text \
+  --column="Status":text \
+  --column="Image":text \
+  < ~/.distros.temp)
+case $? in
+  2)
+    #Setting up the defualt terminal to use with DistroGUI
+    SAVEDTERM=$(cat ~/.config/distrogui/terminal.txt)
+    TERMSETUP=$(yad --form \
+      --title="DistroGUI" \
+      --text="Type the terminal command you wish to use. Include any flags, like '-e' or '-x' to run comands as well as any other flags you may need for operation." \
+      --field="Terminal Command" "$SAVEDTERM")
+    echo $TERMSETUP |  tr -d '|'  > ~/.config/distrogui/terminal.txt
+    #$(basename $) restarts the script. 
+    $(basename $0) && exit
+  ;;
+  10)
+    #Entering a container
+    echo \
+      "$CONTAINER" | awk 'BEGIN {FS = "|"}; {print $1}' | xargs echo -n > ~/.active.distro.temp
+    CONTAINERNAME=$(cat ~/.active.distro.temp)
+    if [ $CONTAINERNAME = ""] #Checks to see if a container was selected
+    then
+      yad --title="DistroGUI" \
+        --text="Please select a container before entering!"
+      
+      $(basename $0) && exit
+    fi
+    #The actual process of entering the container
+    SAVEDTERM=$(cat ~/.config/distrogui/terminal.txt) 
+    SEL_OUTPUT=$(yad --title="DistroGUI" \
+      --form \
+      --text="<b><big><big>Entering $CONTAINERNAME</big></big></b>\n\nIf you just want to enter into the terminal without performing a command, leave the command field blank. If you're just entering to do one command, you may put it in. If it exits immediately after your command, check to see if your terminal has a flag to pause it before exiting and adjust the DistroGUI terminal settings accordingly." \
+      --field="Command to run (optional)" \
+      --button="Enter Container":12 \
+      --button="Enter Container as Root":14)
+    case $? in
+      12)
+        #Entering the container as a regular user
+        echo "Selection Output: $SEL_OUTPUT"
+        DISTROCOMMAND=$(echo $SEL_OUTPUT | awk 'BEGIN {FS="|" } { print $1 }')
+        $SAVEDTERM "distrobox enter $CONTAINERNAME -- $DISTROCOMMAND"
+      ;;
+      14)
+        #Entering the container as a root user
+        echo "Selection Output: $SEL_OUTPUT"
+        DISTROCOMMAND=$(echo $SEL_OUTPUT | \
+          awk 'BEGIN {FS="|" } { print $1 }')
+        if [ $DISTROCOMMAND != "" ]
+        then
+          $SAVEDTERM "distrobox enter $CONTAINERNAME -- sudo $DISTROCOMMAND"
+        else
+          $SAVEDTERM "distrobox enter $CONTAINERNAME -- sudo su"
+        fi
+      ;;
+    esac
+    
+    $(basename $0) && exit
+  ;;
+  20)
+    #Upgrading the container
+    echo "$CONTAINER" | awk 'BEGIN {FS = "|"}; {print $1}' | xargs echo -n > ~/.active.distro.temp
+    CONTAINERNAME=$(cat ~/.active.distro.temp)
+    if [ $CONTAINERNAME = ""] #Checks to see if container is selected
+    then
+      yad --title="DistroGUI" \
+        --text="Please select a container before entering!"
+      
+      $(basename $0) && exit
+    fi
+      distrobox-upgrade $CONTAINERNAME | yad --progress \
+        --title="DistroGUI" \
+        --pulsate \
+        --progress-text="Currently upgrading $CONTAINERNAME" \
+        --auto-close \
+        --auto-kill
+      yad --title="DistroGUI" --text="Upgrade complete!"
+      
+      $(basename $0) && exit
+    ;;
+  30)
+    #Create a new container
+    cat ~/.config/distrogui/docker-images.txt | tr -d '\n' > ~/.config/distrogui/docker-images.temp
+    NEWCONTAINER=$(yad --form \
+      --field="Image:CB" < ~/.config/distrogui/docker-images.temp \
+      --field="Container Name" \
+      --field="Home Folder (optional, default is $HOME)":CDIR )
+    if [ $? = 1 ]
+    then 
+      $(basename $0) && exit
+    fi
+    NEWCONTAINER=$(echo $NEWCONTAINER | sed 's/"//g')
+    echo $NEWCONTAINER > newcontainer.txt
+    NEWCONTAINERIMAGE=$(echo $NEWCONTAINER | awk 'BEGIN {FS = "|"}; {print $2}')  
+    NEWCONTAINERNAME=$(echo $NEWCONTAINER | awk 'BEGIN {FS = "|"}; {print $3}')
+    NEWCONTAINERHOMEDIR=$(echo $NEWCONTAINER | awk 'BEGIN {FS = "|"}; {print $4}')
+    if [ $NEWCONTAINERHOMEDIR ] #Checks if a home directory was specified.
+    #If it was specified, we add --home and the directory which was specified
+    then
+      echo $NEWCONTAINERHOMEDIR
+      mkdir $NEWCONTAINERHOMEDIR
+      NEWCONTAINERHOMEDIR="--home $NEWCONTAINERHOMEDIR"
+    fi
+    #Downloads image and creates the container
+    distrobox-create --name $NEWCONTAINERNAME --image $NEWCONTAINERIMAGE $NEWCONTAINERHOMEDIR | yad --progress \
+      --pulsate \
+      --title="DistroGUI" \
+      --progress-text="Downloading and doing initial install" \
+      --auto-close \
+      --auto-kill
+    #Enters the container for the first time, sets it up, and exits.
+    distrobox-enter $NEWCONTAINERNAME -- exit | yad --progress \
+      --title="DistroGUI" \
+      --pulsate \
+      --progress-text="Setting up your cointainer. This could take a few minutes." \
+      --auto-close \
+      --auto-kill
+    yad --title="DistroGUI" \
+      --text="Creation of container, $NEWCONTAINERNAME, is complete!"
+    rm ~/.distros.temp 
+    $(basename $0) && exit
+  ;;
+  40)
+    #Stops a running container
+    echo "$CONTAINER" | awk 'BEGIN {FS = "|"}; {print $1}' | xargs echo -n > ~/.active.distro.temp
+    CONTAINERNAME=$(cat ~/.active.distro.temp)
+    if [ $CONTAINERNAME = ""]
+    then
+      yad title="DistroGUI" \
+        --text="Please select a container before entering!"
+      $(basename $0) && exit
+    fi
+    distrobox stop $CONTAINERNAME | \
+      yad --progress \
+      --title="DistroGUI" \
+      --progress-text="Stopping the container $CONTAINERNAME" \
+      --auto-close \
+      --auto-kill
+    yad --title="DistroGUI" \
+      --text="$CONTAINERNAME has been stopped."
+    $(basename $0) && exit
+    ;;
+  50)
+    #Deletes a container
+    echo $CONTAINER
+    echo "$CONTAINER" | awk 'BEGIN {FS = "|"}; {print $1}' | xargs echo -n > ~/.active.distro.temp
+    CONTAINERNAME=$(cat ~/.active.distro.temp)
+    echo $CONTAINER | awk 'BEGIN {FS = "|"}; {print $2}' | xargs echo -n > ~/.activedel.distro.temp
+    DELCONTAINERSTATUS=$(cat ~/.activedel.distro.temp | head -n1 | awk '{print $1}')
+    if [ $CONTAINERNAME = ""] #Checks to see if container was selected.
+    then
+      echo $CONTAINERNAME
+      yad title="DistroGUI" \
+        --text="Error" \
+        --text="Please select a container before entering!"
+      
+      $(basename $0) && exit
+    fi
+    #Confirm that we want to delete this container
+    yad --title="DistroGUI" \
+      --text="Are you sure you want to delete $CONTAINERNAME?" \
+      --button="Yes":52 \
+      --button="No":54
+    if [ $? = 54 ]
+    then 
+      $(basename $0) && exit
+    fi
+    if [ $DELCONTAINERSTATUS = "Up" ] #For a container is running, asks for force delete
+    then
+      yad --title="DistroGUI" \
+        --text="$CONTAINERNAME is currently running. Do you want to force delete $CONTAINERNAME? This will end all processes you have open inside of the container." \
+        --button="Yes":56 \
+        --button="No":58
+      if [ $? = 58 ]
+      then
+        $(basename $0) && exit
+      fi
+    fi
+    #The deletion process
+    distrobox rm $CONTAINER --force | yad --title="DistroGUI" \
+      --progress \
+      --pulsate \
+      --progress-text="Deleting $CONTAINERNAME" \
+      --auto-close \
+      --auto-kill
+    yad --title="DistroGUI" \
+      --text="$CONTAINERNAME has been deleted."
+    $(basename $0) && exit
+  ;;
+  60)
+    #About
+    yad --title="About DistroGUI" \
+      --text-align="center" \
+      --text="<b><big><big>DistroGUI</big></big></b>\n\n<b>version:</b>0.01 Usable Alpha\n\n <b>Created by</b>\nMichael Williams - Fearless Geek Media - https://fearlessgeekmedia.com - https://github.com/fearlessgeekmedia\n\nReleased under the GNU-GPL 3.0"
+    $(basename $0) && exit
+  ;;
+esac
+
+rm ~/.distros.temp

@@ -1,0 +1,65 @@
+"AlmaLinux (base) 8 | quay.io/almalinux/8-base:8"\! 
+"AlmaLinux (init) 8 | quay.io/almalinux/8-init:8"\!
+"AlmaLinux 8 | quay.io/almalinux/almalinux:8"\!
+"AlmaLinux 9 | quay.io/almalinux/almalinux:9"\!
+"AlmaLinux 9 (minimal) | quay.io/almalinux/almalinux:9-minimal"\!
+"Alpine Linux 3.15 | docker.io/library/alpine:3.15"\!
+"Alpine Linux 3.16 | docker.io/library/alpine:3.15"\!
+"Alpine Linux (latest) | docker.io/library/alpine:latest"\!
+"AmazonLinux 1 | public.ecr.aws/amazonlinux/amazonlinux:1"\!
+"AmazonLinux 2 | public.ecr.aws/amazonlinux/amazonlinux:2"\!
+"AmazonLinux 2022 | public.ecr.aws/amazonlinux/amazonlinux:2022.0.20220531.0"\!
+"Archlinux | docker.io/library/archlinux:latest"\!
+"CentOS Stream 8 | quay.io/centos/centos:stream8"\!
+"CentOS Stream 9 | quay.io/centos/centos:stream9"\!
+"CentOS 7 | quay.io/centos/centos:7"\!
+"ClearLinux (latest) | docker.io/library/clearlinux:latest"\!
+"ClearLinux (base) | docker.io/library/clearlinux:base"\!
+"Debian 7 | docker.io/debian/eol:wheezy"\!
+"Debian 8 | docker.io/library/debian:8"\!
+"Debian 9 | docker.io/library/debian:9"\!
+"Debian 10 | docker.io/library/debian:10"\!
+"Debian (Stable) | docker.io/library/debian:stable"\!
+"Debian (Stable-Backports) | docker.io/library/debian:stable-backports"\!
+"Debian Testing | docker.io/library/debian:testing"\!
+"Debian Unstable | docker.io/library/debian:unstable"\!
+"Fedora 35 (Toolbox) | registry.fedoraproject.org/fedora-toolbox:35"\!
+"Fedora 35 | quay.io/fedora/fedora:35"\!
+"Fedora 36 | quay.io/fedora/fedora:36"\!
+"Fedora 37 | registry.fedoraproject.org/fedora:37"\!
+"Fedora Rawhide | quay.io/fedora/fedora:rawhide"\!
+"Gentoo Linux | docker.io/gentoo/stage3:latest"\!
+"Kali Linux | docker.io/kalilinux/kali-rolling:latest"\!
+"Mageia 8 | docker.io/library/mageia"\!
+"Neurodebian nd100 | docker.io/library/neurodebian:nd100"\!
+"OpenSuSE Leap | registry.opensuse.org/opensuse/leap:latest"\!
+"OpenSuSE Tumbleweed | registry.opensuse.org/opensuse/tumbleweed:latest"\!
+"OpenSuSE Tumbleweed Toolbox | registry.opensuse.org/opensuse/toolbox:latest"\!
+"Oracle Linux 7 | container-registry.oracle.com/os/oraclelinux:7"\!
+"Oracle Linux 7-Slim | container-registry.oracle.com/os/oraclelinux:7-slim"\!
+"Oracle Linux 8 | container-registry.oracle.com/os/oraclelinux:8"\!
+"Oracle Linux 8-Slim | container-registry.oracle.com/os/oraclelinux:8-slim"\!
+"Oracle Linux 9 | container-registry.oracle.com/os/oraclelinux:9"\!
+"Oracle Linux 9-Slim | container-registry.oracle.com/os/oraclelinux:9-slim"\!
+"RedHat 7 (UBI) | registry.access.redhat.com/ubi7/ubi"\!
+"RedHat 7 (UBI init) | registry.access.redhat.com/ubi7/ubi-init"\!
+"RedHat 8 (UBI) | registry.access.redhat.com/ubi8/ubi"\!
+"RedHat 8 (UBI init) | registry.access.redhat.com/ubi8/ubi-init"\!
+"RedHat 8 (UBI minimal) | registry.access.redhat.com/ubi8/ubi-minimal"\!
+"RedHat 9 (UBI) | registry.access.redhat.com/ubi9/ubi"\!
+"RedHat 9 (UBI init) | registry.access.redhat.com/ubi9/ubi-init"\!
+"RedHat 9 (UBI minimal) | registry.access.redhat.com/ubi9/ubi-minimal"\!
+"Rocky Linux 8 | quay.io/rockylinux/rockylinux:8"\!
+"Rocky Linux 8-minimal | quay.io/rockylinux/rockylinux:8-minimal"\!
+"Rocky Linux 9 | quay.io/rockylinux/rockylinux:9"\!
+"Rocky Linux (latest) | quay.io/rockylinux/rockylinux:latest"\!
+"Scientific Linux 7 | docker.io/library/sl:7"\!
+"Slackware 14.2 | docker.io/vbatts/slackware:14.2"\!
+"Ubuntu 14.04 | docker.io/library/ubuntu:14.04"\!
+"Ubuntu 16.04 | docker.io/library/ubuntu:16.04"\!
+"Ubuntu 18.04 | docker.io/library/ubuntu:18.04"\!
+"Ubuntu 20.04 | docker.io/library/ubuntu:20.04"\!
+"Ubuntu 22.04 | docker.io/library/ubuntu:22.04"\!
+"Ubuntu 22.10 | docker.io/library/ubuntu:22.10"\!
+"Void Linux | ghcr.io/void-linux/void-linux:latest-full-x86_64"\!
+"Void Linux (musl) | ghcr.io/void-linux/void-linux:latest-full-x86_64-musl"

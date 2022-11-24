@@ -1,0 +1,8 @@
+[Desktop Entry]
+Exec=AppRun --no-sandbox %U
+Type=Application
+Name=DistroGUI
+Icon=dg-icon
+Categories=Application;
+Terminal=false
+X-AppImage-Version=0.1.09

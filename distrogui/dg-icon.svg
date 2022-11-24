@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <rect
+       x="65.755249"
+       y="81.333405"
+       width="389.04117"
+       height="345.16586"
+       id="rect219" />
+  </defs>
+  <g
+     id="layer1">
+    <rect
+       style="fill:#000000"
+       id="rect111"
+       width="486.58972"
+       height="487.33347"
+       x="14.544872"
+       y="12.210042"
+       ry="62.045403" />
+    <text
+       xml:space="preserve"
+       id="text217"
+       style="font-size:192px;white-space:pre;shape-inside:url(#rect219);display:inline;fill:#ffffff"
+       transform="matrix(1.7264723,0,0,1.7264723,-59.466507,-60.083836)"><tspan
+         x="65.755859"
+         y="251.20898"
+         id="tspan277"><tspan
+           style="font-family:'Hurmit Nerd Font Mono';-inkscape-font-specification:'Hurmit Nerd Font Mono'"
+           id="tspan275">DG</tspan></tspan></text>
+    <rect
+       style="fill:none;stroke:#ffffff;stroke-width:17.5988;stroke-dasharray:none;stroke-opacity:1"
+       id="rect493"
+       width="435.69861"
+       height="425.9328"
+       x="40.302387"
+       y="42.320366"
+       ry="68.027191" />
+  </g>
+</svg>
