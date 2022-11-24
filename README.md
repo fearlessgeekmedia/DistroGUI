@@ -10,15 +10,18 @@ DistroGUI is a graphical front end for [Distrobox](https://github.com/89luca89/d
 
 ### Build YAD
 
-We included the binary of yad with the source. However, you may want to build YAD from scratch. To comply with the GNU GPL, README.md in the yad folder has the build instructions. `cd yad` and follow the build isntructions provided in README.md there. When you are done, `cd ../` and continue with the instructions here for building the DistroGUI AppImage.
+1. Open the terminal and put in `git clone https://github.com/fearlessgeekmedia/DistroGUI.git`.
+2. `cd DistroGUI/yad`
+3. Follow the build instructions of the README.md in the Yad directory. Make sure you use the `--enable-standalone` option with the `./configure` command, assuming you want to package yad with this. Otherwise, you can just build yad like normal. Don't do `make install` if you're doing `--enable-standalone.`
+4. `cp yad ../ && cd ../`
+
+Now you can continue to building the DistroGUI AppImage
 
 ### Build DistroGUI AppImage
 
-Build dependencies: appimagetool, unionfs, fuse, unionfs-fuse, bash (which comes with pretty much any Linux distribution)
+Build dependencies: appimagetool, unionfs, fuse, unionfs-fuse
 
-Other dependencies: yad (in the source code and in binary format with it) and Distrobox
-
-This does use a standalone binary of [YAD 12.1](https://github.com/v1cont/yad), - https://github.com/v1cont/yad which is licenced under the GNU-GPL 3.0.  
+Other dependencies: Distrobox (of course), bash (which comes with pretty much any Linux distribution)
 
 1. Clone the reipository by typing `git clone https://github.com/fearlessgeekmedia/DistroGUI.git` in the terminal.
 2. Type `cd DistroGUI`
