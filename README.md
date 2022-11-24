@@ -10,7 +10,7 @@ DistroGUI is a graphical front end for Distrobox. Distrobox makes it easy to run
 
 ### Build YAD
 
-We included the binary of yad with the source. However, you may want to build YAD from scratch. To comply with the GNU GPL, README.md in the yad folder has the build instructions.
+We included the binary of yad with the source. However, you may want to build YAD from scratch. To comply with the GNU GPL, README.md in the yad folder has the build instructions. `cd yad` and follow the build isntructions provided in README.md there. When you are done, `cd ../` and continue with the instructions here for building the DistroGUI AppImage.
 
 ### Build DistroGUI AppImage
 
