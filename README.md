@@ -10,11 +10,11 @@ Build dependencies: appimagetool, bash (which comes with pretty much any Linux d
 
 This does use a standalone binary of [YAD 12.1](https://github.com/v1cont/yad), - https://github.com/v1cont/yad which is licenced under the GNU-GPL 3.0.  
 
-1. Clone the reipository by typing 'git clone https://github.com/fearlessgeekmedia/DistroGUI.git' in the terminal.
-2. Type 'cd DistroGUI'
-3. 'sudo ./tempenv.sh setup'
-4. 'sudo ./tempenv.sh start'
-5. 'appimagetool distrogui'
+1. Clone the reipository by typing `git clone https://github.com/fearlessgeekmedia/DistroGUI.git` in the terminal.
+2. Type `cd DistroGUI`
+3. `sudo ./tempenv.sh setup`
+4. `sudo ./tempenv.sh start`
+5. `appimagetool distrogui`
 
 This will build the AppImage file which you can now run.
 
