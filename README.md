@@ -16,6 +16,8 @@ We included the binary of yad with the source. However, you may want to build YA
 
 Build dependencies: appimagetool, unionfs, fuse, unionfs-fuse, bash (which comes with pretty much any Linux distribution)
 
+Other dependencies: yad (in the source code and in binary format with it) and Distrobox
+
 This does use a standalone binary of [YAD 12.1](https://github.com/v1cont/yad), - https://github.com/v1cont/yad which is licenced under the GNU-GPL 3.0.  
 
 1. Clone the reipository by typing `git clone https://github.com/fearlessgeekmedia/DistroGUI.git` in the terminal.
@@ -32,4 +34,5 @@ This will build the AppImage file which you can now run.
 - Error checking with container creation
 - Figure out why, on occation, it doesn't list all Distrobox containers.
 - Fix the error in the shortcut where it's telling you the wrong version number. 
+- Make it possible to export applications and binaries via the GUI
 - *Will be updated as I find other issues*
