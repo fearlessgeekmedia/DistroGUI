@@ -12,8 +12,8 @@ DistroGUI is a graphical front end for [Distrobox](https://github.com/89luca89/d
 
 1. Open the terminal and put in `git clone https://github.com/fearlessgeekmedia/DistroGUI.git`.
 2. `cd DistroGUI/yad`
-3. Follow the build instructions of the [README.md](./yad/README.md) in the Yad directory. Make sure you use the `--enable-standalone` option with the `./configure` command, assuming you want to package yad with this. Otherwise, you can just build yad like normal. Don't do `make install` if you're doing `--enable-standalone.`
-4. `cp yad ../ && cd ../`
+3. Follow the build instructions of the [README.md](./yad/README.md) in the Yad directory. Make sure you use the `--enable-standalone` option with the `./configure` command, assuming you want to package yad with this. Otherwise, you can just build yad like normal. Don't do `make install` if you're doing `--enable-standalone.` If you're packaging this for distribution, you should use `--enable-standalone` in case the user does not have yad on their system.
+4. Assuming you've done the standalone version of yad, `cp yad ../ && cd ../`
 
 Now you can continue to building the DistroGUI AppImage
 
