@@ -12,7 +12,7 @@ DistroGUI is a graphical front end for [Distrobox](https://github.com/89luca89/d
 
 1. Open the terminal and put in `git clone https://github.com/fearlessgeekmedia/DistroGUI.git`.
 2. `cd DistroGUI/yad`
-3. Follow the build instructions of the README.md in the Yad directory. Make sure you use the `--enable-standalone` option with the `./configure` command, assuming you want to package yad with this. Otherwise, you can just build yad like normal. Don't do `make install` if you're doing `--enable-standalone.`
+3. Follow the build instructions of the [README.md](./yad/README.md) in the Yad directory. Make sure you use the `--enable-standalone` option with the `./configure` command, assuming you want to package yad with this. Otherwise, you can just build yad like normal. Don't do `make install` if you're doing `--enable-standalone.`
 4. `cp yad ../ && cd ../`
 
 Now you can continue to building the DistroGUI AppImage
@@ -23,8 +23,8 @@ Build dependencies: appimagetool, unionfs, fuse, unionfs-fuse
 
 Other dependencies: Distrobox (of course), bash (which comes with pretty much any Linux distribution)
 
-1. Clone the reipository by typing `git clone https://github.com/fearlessgeekmedia/DistroGUI.git` in the terminal.
-2. Type `cd DistroGUI`
+1. Assuming you've followed the instructions for building yad, you should now be in the appropriate directory. If you're not, go back and build yad. Or if you have yad already installed on your system, you may skip that part, but be sure to at least run `git clone https://github.com/fearlessgeekmedia/DistroGUI.git` first. Keep in mind, if you're building the AppImage without building yad, yad will need to be installed already on whatever system you're putting it on.
+2. If you're skipping building yad because you already have yad installed., just type `cd DistroGUI`. If you've followed the yad build instructions, you're already in the right direcotry.
 3. `sudo ./tempenv.sh setup`
 4. `sudo ./tempenv.sh start`
 5. `appimagetool distrogui`
