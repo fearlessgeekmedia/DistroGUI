@@ -2,6 +2,10 @@
 
 v.0.01 Usable Beta
 
+
+
+![](distrogui-screenshot.png)
+
 DistroGUI is a graphical front end for [Distrobox](https://github.com/89luca89/distrobox). Distrobox makes it easy to run other Linux distributions via the command line, without running in a virtual machine. It uses podman or docker containers, instead, giving you much better performance, and integrates with the system.
 
 **Note:** *While this app is in a usable state, please understand that I consider it alpha software. It's far from where I want it to be for prime time. There are still more features I would like to add, and I can't garauntee everything will work perfectly. But this is in a usable state, and I think this is an alpha that you'll be ok with using if you want to.*
