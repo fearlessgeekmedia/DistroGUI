@@ -38,4 +38,5 @@ This will build the AppImage file which you can now run.
 - Figure out why, on occasion, it doesn't list all Distrobox containers.
 - Fix the error in the shortcut where it's telling you the wrong version number. 
 - Make it possible to export applications and binaries via the GUI
+- Create containers with --init to allow init systems in containers with images that allow it
 - *Will be updated as I find other issues*
