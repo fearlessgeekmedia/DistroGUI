@@ -1,6 +1,6 @@
 # DistroGUI
 
-v.0.01 Usable Beta
+v.0.01 Usable Alpha
 
 
 
