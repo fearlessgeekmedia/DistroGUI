@@ -1,6 +1,6 @@
 # DistroGUI
 
-**February 2, 2023 Update** - After some more thought, I have decided that I will be re-working the UI in Glade. I've also considered using Nushell instead of BASH, as I feel that the language in its current state would make things a bit easier. However, Nushell is still making decisions on how to proceed with future releases, and a lot could change. For now, I will be sticking with Bash. I've also recently switched to BlendOS and hope to make some contributions to that project, specifically with Distrogui.
+**February 2, 2023 Update** - After some more thought, I have decided that I will be re-working the UI in Glade, and cease using Yad. I've also considered using Nushell instead of BASH, as I feel that the language in its current state would make things a bit easier. However, Nushell is still making decisions on how to proceed with future releases, and a lot could change. For now, I will be sticking with Bash. I've also recently switched to BlendOS and hope to make some contributions to that project, specifically with Distrogui.
 
 
 v.0.01 Usable Alpha
