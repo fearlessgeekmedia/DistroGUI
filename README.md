@@ -1,5 +1,8 @@
 # DistroGUI
 
+
+**July 19, 2023 update** - So being a web developer, electron is a bit more natural to me. So that's the route I'm going. I do apologize for this project being so inactive, by the way. I have started work on this again today. We will be switching from the bash/yad interface to an Electron-based interface over the next few weeks. 
+
 **February 2, 2023 Update** - After some more thought, I have decided that I will be re-working the UI in Glade, and cease using Yad and Bash. I've also recently switched to BlendOS and hope to make some contributions to that project, specifically with Distrogui.
 
 
